@@ -8,7 +8,6 @@ M.general = {
     ["<"] = { "<C-i>", "back in jump list" },
     ["<Leader>p"] = { '"0p', "past copied text" },
     ["<Leader>P"] = { '"0P', "past copied text above" },
-    ["<Leader>y"] = { '"*y', "copy to os clipboard" },
     ["<Leader>k"] = { ":<c-u>put!=repeat([''],v:count)<bar>']+1<cr>", "new line above" },
     ["<Leader>j"] = { ":<c-u>put =repeat([''],v:count)<bar>'[-1<cr>", "new line under" },
     ["m"] = { ";", "next result" },
@@ -24,13 +23,7 @@ M.general = {
       end,
       "Floating diagnostic",
     },
-    ["ca"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
-    },
-    ["bl"] = {
+    ["<Leader>bl"] = {
       function()
         package.loaded.gitsigns.blame_line()
       end,
@@ -41,13 +34,17 @@ M.general = {
     ["<S-Down>"] = { "<cmd>resize -2<cr>", "Decrease window height" },
     ["<S-Left>"] = { "<cmd>vertical resize -2<cr>", "Decrease window width" },
     ["<S-Right>"] = { "<cmd>vertical resize +2<cr>", "Increase window width" },
-
+    ["<Leader>s"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "search and replace"},
     -- [""] = {"", ""},
   },
   v = {
     ["m"] = { ";", "next result" },
     ["M"] = { ",", "previus result" },
+    ["<Leader>y"] = { '"*y', "copy to os clipboard" },
   },
+  i={
+    --[""] = {"", "open completion"},
+  }
 }
 
 -- more keybinds!

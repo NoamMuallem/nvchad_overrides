@@ -19,7 +19,13 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
+      require("lspconfig").tailwindcss.setup {}
     end, -- Override to setup mason-lspconfig
+    opt = {
+      servers = {
+        tailwindcss = {},
+      },
+    },
   },
 
   -- override plugin configs
@@ -209,6 +215,45 @@ local plugins = {
   },
 
   { "MunifTanjim/nui.nvim", lazy = true },
+
+  -- tailwind
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        tailwindcss = {},
+      },
+    },
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
+  {
+    "laytan/tailwind-sorter.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+    build = "cd formatter && npm i && npm run build",
+    cmd = "TailwindSort",
+    opts = {
+      on_save_enabled = true,
+      on_save_pattern = {
+        "*.html",
+        "*.js",
+        "*.jsx",
+        "*.tsx",
+        "*.twig",
+        "*.hbs",
+        "*.php",
+        "*.heex",
+      },
+      node_path = "node",
+    },
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
